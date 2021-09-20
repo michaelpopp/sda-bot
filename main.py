@@ -5,6 +5,8 @@
 import discord
 import os
 import logging
+from dotenv import load_dotenv
+load_dotenv()
 
 #Writes logs to a file called discord.log
 logger = logging.getLogger('discord')
@@ -37,4 +39,4 @@ async def on_message(message):
             await message.channel.send(f'Bye {username}!')
             return
 
-client.run(os.getenv(TOKEN))
+client.run(os.getenv('TOKEN'))
