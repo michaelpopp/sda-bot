@@ -1,7 +1,7 @@
 The official Student Disciplinary Action Bot.  
 
 -----Commands for users-----
-.hello : displays a greeting from the bot.  Saying hello twice provides a different 
+.hello : displays a greeting from the bot.  Saying hello twice provides a different\n
 greeting.
 
 -----Developer Notes-----
