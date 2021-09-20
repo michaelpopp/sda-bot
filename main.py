@@ -1,42 +1,29 @@
-# @TODO 
-# 1) Put Token in seperate file
-# 2) Seperate event listeners into their own file(s)
-# 3) Seperate logger into their own file(s)
 import discord
 import os
-import logging
+from discord import Intents
+from discord.ext import commands
 from dotenv import load_dotenv
+
 load_dotenv()
 
-#Writes logs to a file called discord.log
-logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
-handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
-handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(handler)
+intents = Intents.default()
+intents.members = True
 
-client = discord.Client()
+client = commands.Bot(command_prefix='.', intents=intents)
 
-@client.event
-async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+#load cogs
+@client.command()
+async def load(context, extension):
+    client.load_extension(f'cogs.{extension}')
 
-@client.event
-async def on_message(message):
-    username = str(message.author).split('#')[0]
-    user_message = str(message.content)
-    channel = str(message.channel.name)
-    print(f'{username}: {user_message} ({channel})')
+#unloading cogs
+@client.command()
+async def unload(context, extension):
+    client.unload_extension(f'cogs.{extension}')
 
-    if message.author == client.user:
-        return
-
-    if message.channel.name == 'general':
-        if user_message.lower() == 'hello':
-            await message.channel.send(f'Hello {username}!')
-            return
-        elif user_message.lower() == 'bye':
-            await message.channel.send(f'Bye {username}!')
-            return
+#Loads all extensions in cog folder
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        client.load_extension(f'cogs.{filename[:-3]}')
 
 client.run(os.getenv('TOKEN'))
