@@ -22,7 +22,7 @@ class Greetings(commands.Cog):
         channel = message.channel
         member = message.author
 
-        Cheers= ["hi","hello","sup"]
+        Cheers= ["hi","hello","sup", "hey guys"]
         if message.content.lower() in Cheers:
             if self._last_member is None or self._last_member.id != member.id:
                 await channel.send('Hello {0.name}  (⁄ ⁄◕⁄‿⁄◕⁄ ⁄✿)'.format(member))
@@ -36,11 +36,11 @@ class Greetings(commands.Cog):
     async def farewell(self, message):
         if message.author == self.client.user:
             return
-            
+
         channel = message.channel
         member = message.author
 
-        farewells= ['goodbye', 'see ya', 'bye', 'g2g']
+        farewells= ['goodbye', 'see ya', 'bye', 'g2g', 'i have to go']
         if message.content.lower() in farewells:
             await channel.send('( ๑╥⌓╥) Goodbye {0.name}, see you soon! (˃̣̣̥^˂̣̣̥`)'.format(member))
             await self.client.process_commands(message)
