@@ -1,7 +1,17 @@
+# @TODO 
+# 1) Put Token in seperate file
+# 2) Seperate event listeners into their own file(s)
+# 3) Seperate logger into their own file(s)
 import discord
-import random
+import os
+import logging
 
-TOKEN ='ODg5MzE1MjY4ODg1NjM5MTk4.YUfdYg.n4IT3b_SSxxCHF2A35TfO6EeR6o'
+#Writes logs to a file called discord.log
+logger = logging.getLogger('discord')
+logger.setLevel(logging.DEBUG)
+handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)
 
 client = discord.Client()
 
@@ -27,4 +37,4 @@ async def on_message(message):
             await message.channel.send(f'Bye {username}!')
             return
 
-client.run(TOKEN)
+client.run(os.getenv(TOKEN))
