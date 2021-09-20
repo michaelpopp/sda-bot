@@ -14,16 +14,37 @@ class Greetings(commands.Cog):
         if channel is not None:
             await channel.send('Welcome {0.mention}!  '.format(member))
 
-    #Command(s)
-    @commands.command()
-    async def hello(self, context, *, member: discord.Member = None):
-        """Says hello"""
-        member = member or context.author
-        if self._last_member is None or self._last_member.id != member.id:
-            await context.send('Hello {0.name}  (⁄ ⁄◕⁄‿⁄◕⁄ ⁄✿)'.format(member))
-        else:
-            await context.send('Hello again senpai!  (˘ε˘˶ )'.format(member))
-        self._last_member = member
+    @commands.Cog.listener("on_message")
+    async def greet(self, message):
+        if message.author == self.client.user:
+            return
+
+        channel = message.channel
+        member = message.author
+
+        Cheers= ["hi","hello","sup"]
+        if message.content.lower() in Cheers:
+            if self._last_member is None or self._last_member.id != member.id:
+                await channel.send('Hello {0.name}  (⁄ ⁄◕⁄‿⁄◕⁄ ⁄✿)'.format(member))
+                await self.client.process_commands(message)
+            else:
+                 await channel.send('Hello again senpai!  (˘ε˘˶ )'.format(member))
+                 await self.client.process_commands(message)
+            self._last_member = member
+
+    @commands.Cog.listener("on_message")
+    async def farewell(self, message):
+        if message.author == self.client.user:
+            return
+            
+        channel = message.channel
+        member = message.author
+
+        farewells= ['goodbye', 'see ya', 'bye', 'g2g']
+        if message.content.lower() in farewells:
+            await channel.send('( ๑╥⌓╥) Goodbye {0.name}, see you soon! (˃̣̣̥^˂̣̣̥`)'.format(member))
+            await self.client.process_commands(message)
+
 
 def setup(client):
     client.add_cog(Greetings(client))
