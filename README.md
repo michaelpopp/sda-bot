@@ -4,7 +4,8 @@ The official Student Disciplinary Action Bot.
 Greetings and farewells for various phrases
 
 -----Commands for users-----  
-.ping : Will ping the bot and return the latency in milliseconds.  
+$ping : Will ping the bot and return the latency in milliseconds.  
+$kickme : kicks oneself.
 
 -----Developer Notes-----  
 Token for the bot is accessed in a dot env file located in the root directory.  You  

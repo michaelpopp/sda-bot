@@ -2,3 +2,5 @@
 discord.log
 cogs/__pycache__/greetings.cpython-39.pyc
 cogs/__pycache__/boot.cpython-39.pyc
+cogs/__pycache__/moderator.cpython-39.pyc
+cogs/__pycache__/development.cpython-39.pyc
