@@ -1,6 +1,6 @@
 The official Student Disciplinary Action Bot.  
 
------Events for users-----
+-----Events for users-----  
 Greetings and farewells for various phrases
 
 -----Commands for users-----  
