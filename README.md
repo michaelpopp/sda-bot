@@ -12,7 +12,7 @@ Token for the bot is accessed in a dot env file located in the root directory.  
 may have to produce your own token for development purposes.    
 
 If hosted on a headless server (eg. Raspberry pi) the linux tool, screen, can be used to
-preventtermination of the program when you exit SSH.  
+prevent termination of the program when you exit SSH.  
 
 Packages needed:  
 Python 3  
