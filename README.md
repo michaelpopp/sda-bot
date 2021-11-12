@@ -11,8 +11,8 @@ $kickme : kicks oneself.
 Token for the bot is accessed in a dot env file located in the root directory.  You  
 may have to produce your own token for development purposes.    
 
-If hosted on a headless server (eg. Raspberry pi) the linux tool, screen, can be used to
-prevent termination of the program when you exit SSH.  
+If hosted on a headless server (eg. Raspberry pi) linux tools, like tmux or  screen, can be used to
+prevent termination of the program when you exit SSH (assuming that is how you are accessing the server).  
 
 Packages needed:  
 Python 3  
